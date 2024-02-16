@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+from .db_conn import dbconn
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -76,13 +76,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'smartnotes.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+db = dbconn()
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": db.engine,
+        "NAME": db.name,
+        "USER": db.user,
+        "PASSWORD": db.password,
+        "HOST": db.host,
+        "PORT": db.port,
+        "OPTIONS": {
+            "driver": db.driver,
+        },
     }
 }
 
