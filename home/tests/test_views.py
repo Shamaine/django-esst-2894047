@@ -11,6 +11,7 @@ def test_signup(client):
     assert response.status_code==200
     assert 'home/register.html' in response.template_name 
 
+
 #create temporary test database
 @pytest.mark.django_db
 def test_signup_authenticated(client):
