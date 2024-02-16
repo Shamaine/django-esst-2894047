@@ -5,7 +5,7 @@ from .factories import UserFactory
 #use pytest.fixture to create reusable code
 @pytest.fixture
 def logged_user(client):
-    user= User.objects.create_user('Kim','kim@test.com','password')
+    user= UserFactory()
     client.login(username= user.username, password = 'password')
     return user
 
